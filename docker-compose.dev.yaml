@@ -1,13 +1,16 @@
 services:
   postiz-postgres:
     # ref: https://hub.docker.com/_/postgres
-    image: postgres:17-alpine # 17.0
+    image: postgres:17-alpine
+    command: ["/bin/sh", "-c", "apk add --no-cache nodejs npm && docker-entrypoint.sh postgres"]
     container_name: postiz-postgres
     restart: always
     environment:
       POSTGRES_PASSWORD: postiz-local-pwd
       POSTGRES_USER: postiz-local
       POSTGRES_DB: postiz-db-local
+      POSTGRES_HOST_AUTH_METHOD: scram-sha-256
+      POSTGRES_INITDB_ARGS: --auth-host=scram-sha-256
     volumes:
       - postgres-volume:/var/lib/postgresql/data
     ports:

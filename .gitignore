@@ -56,3 +56,5 @@ Thumbs.db
 # ignore Secrets folder
 .secrets/
 libraries/plugins/src/plugins.ts
+.cursor\rules\nx-rules.mdc
+.github\instructions\nx.instructions.md
